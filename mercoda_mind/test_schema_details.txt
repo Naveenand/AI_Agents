@@ -1,0 +1,99 @@
+Database schema : public
+
+ Table: product_category_name_translation
+ columns:product_category_name data_types : character varying
+ columns:product_category_name_english data_types : character varying
+ sample_data: 
+     ('beleza_saude', 'health_beauty')
+     ('informatica_acessorios', 'computers_accessories')
+
+ Table: customers
+ columns:customer_id data_types : character
+ columns:customer_unique_id data_types : character
+ columns:customer_zip_code_prefix data_types : character varying
+ columns:customer_city data_types : character varying
+ columns:customer_state data_types : character
+ sample_data: 
+     ('06b8999e2fba1a1fbc88172c00ba8bc7', '861eff4711a542e4b93843c6dd7febb0', '14409', 'franca', 'SP')
+     ('18955e83d337fd6b2def6b18a428ac77', '290c77bc529b7ac935b93aa66c333dc3', '09790', 'sao bernardo do campo', 'SP')
+
+ Table: orders
+ columns:order_id data_types : character
+ columns:customer_id data_types : character
+ columns:order_status data_types : character varying
+ columns:order_purchase_timestamp data_types : timestamp without time zone
+ columns:order_approved_at data_types : timestamp without time zone
+ columns:order_delivered_carrier_date data_types : timestamp without time zone
+ columns:order_delivered_customer_date data_types : timestamp without time zone
+ columns:order_estimated_delivery_date data_types : timestamp without time zone
+ sample_data: 
+     ('e481f51cbdc54678b7cc49136f2d6af7', '9ef432eb6251297304e76186b10a928d', 'delivered', datetime.datetime(2017, 10, 2, 10, 56, 33), datetime.datetime(2017, 10, 2, 11, 7, 15), datetime.datetime(2017, 10, 4, 19, 55), datetime.datetime(2017, 10, 10, 21, 25, 13), datetime.datetime(2017, 10, 18, 0, 0))
+     ('53cdb2fc8bc7dce0b6741e2150273451', 'b0830fb4747a6c6d20dea0b8c802d7ef', 'delivered', datetime.datetime(2018, 7, 24, 20, 41, 37), datetime.datetime(2018, 7, 26, 3, 24, 27), datetime.datetime(2018, 7, 26, 14, 31), datetime.datetime(2018, 8, 7, 15, 27, 45), datetime.datetime(2018, 8, 13, 0, 0))
+
+ Table: order_items
+ columns:order_id data_types : character
+ columns:order_item_id data_types : integer
+ columns:product_id data_types : character
+ columns:seller_id data_types : character
+ columns:shipping_limit_date data_types : timestamp without time zone
+ columns:price data_types : numeric
+ columns:freight_value data_types : numeric
+ sample_data: 
+     ('00010242fe8c5a6d1ba2dd792cb16214', 1, '4244733e06e7ecb4970a6e2683c13e61', '48436dade18ac8b2bce089ec2a041202', datetime.datetime(2017, 9, 19, 9, 45, 35), Decimal('58.90'), Decimal('13.29'))
+     ('00018f77f2f0320c557190d7a144bdd3', 1, 'e5f2d52b802189ee658865ca93d83a8f', 'dd7ddc04e1b6c2c614352b383efe2d36', datetime.datetime(2017, 5, 3, 11, 5, 13), Decimal('239.90'), Decimal('19.93'))
+
+ Table: products
+ columns:product_id data_types : character
+ columns:product_category_name data_types : character varying
+ columns:product_name_lenght data_types : integer
+ columns:product_description_lenght data_types : integer
+ columns:product_photos_qty data_types : integer
+ columns:product_weight_g data_types : integer
+ columns:product_length_cm data_types : integer
+ columns:product_height_cm data_types : integer
+ columns:product_width_cm data_types : integer
+ sample_data: 
+     ('1e9e8ef04dbcff4541ed26657ea517e5', 'perfumaria', 40, 287, 1, 225, 16, 10, 14)
+     ('3aa071139cb16b67ca9e5dea641aaa2f', 'artes', 44, 276, 1, 1000, 30, 18, 20)
+
+ Table: sellers
+ columns:seller_id data_types : character
+ columns:seller_zip_code_prefix data_types : character varying
+ columns:seller_city data_types : character varying
+ columns:seller_state data_types : character
+ sample_data: 
+     ('3442f8959a84dea7ee197c632cb2df15', '13023', 'campinas', 'SP')
+     ('d1b65fc7debc3361ea86b5f14c68d2e2', '13844', 'mogi guacu', 'SP')
+
+ Table: order_payments
+ columns:order_id data_types : character
+ columns:payment_sequential data_types : integer
+ columns:payment_type data_types : character varying
+ columns:payment_installments data_types : integer
+ columns:payment_value data_types : numeric
+ sample_data: 
+     ('b81ef226f3fe1789b1e8b2acac839d17', 1, 'credit_card', 8, Decimal('99.33'))
+     ('a9810da82917af2d9aefd1278f1dcfa0', 1, 'credit_card', 1, Decimal('24.39'))
+
+ Table: order_reviews
+ columns:review_id data_types : character
+ columns:order_id data_types : character
+ columns:review_score data_types : integer
+ columns:review_comment_title data_types : character varying
+ columns:review_comment_message data_types : text
+ columns:review_creation_date data_types : timestamp without time zone
+ columns:review_answer_timestamp data_types : timestamp without time zone
+ sample_data: 
+     ('7bc2406110b926393aa56f80a40eba40', '73fc7af87114b39712e6da79b0a377eb', 4, None, None, datetime.datetime(2018, 1, 18, 0, 0), datetime.datetime(2018, 1, 18, 21, 46, 59))
+     ('80e641a11e56f04c1ad469d5645fdfde', 'a548910a1c6147796b98fdf73dbeba33', 5, None, None, datetime.datetime(2018, 3, 10, 0, 0), datetime.datetime(2018, 3, 11, 3, 5, 13))
+
+ Table: geolocation
+ columns:geolocation_id data_types : bigint
+ columns:geolocation_zip_code_prefix data_types : character varying
+ columns:geolocation_lat data_types : double precision
+ columns:geolocation_lng data_types : double precision
+ columns:geolocation_city data_types : character varying
+ columns:geolocation_state data_types : character
+ sample_data: 
+     (1, '01037', -23.54562128115268, -46.63929204800168, 'sao paulo', 'SP')
+     (2, '01046', -23.546081127035535, -46.64482029837157, 'sao paulo', 'SP')

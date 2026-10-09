@@ -1,0 +1,29 @@
+[project]
+name = "mercoda-mind"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Naveen", email = "naveenyadavgolla04@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "dotenv>=0.9.9",
+    "ipython>=9.17.1",
+    "langchain>=1.4.3",
+    "langchain-openai>=1.6.7",
+    "langgraph>=1.2.12",
+    "pandas>=3.0.6",
+    "psycopg2>=2.9.13",
+    "psycopg2-binary>=2.9.13",
+    "pydantic>=2.13.5",
+    "pytest>=9.1.1",
+    "sqlglot>=30.21.0",
+]
+
+[project.scripts]
+mercoda-mind = "mercoda_mind:main"
+
+[build-system]
+requires = ["uv_build>=0.12.22,<0.13.0"]
+build-backend = "uv_build"
